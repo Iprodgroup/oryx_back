@@ -1,0 +1,41 @@
+/*@media screen and (max-width: 1024px) {
+.menuside {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+ul.navs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-wrap {
+    width: 100%;
+    margin-left: 0;
+}
+
+.navs li {
+    border:  1px solid #DADADA;
+    margin: 1px;
+    padding: 10px;
+} 
+.admin-info {
+    margin-left: auto;
+    margin-right: 0;
+    width: calc(100% - 256px);
+} 
+.content-wrap {
+    overflow-x: scroll;
+    align-items: unset;
+    margin-bottom: 50px;
+}
+
+.content {
+    width: 800px;
+    margin-bottom: 0; 
+    padding: 15px;
+}
+
+}
+*/

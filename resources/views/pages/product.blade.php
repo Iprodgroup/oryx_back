@@ -41,7 +41,7 @@
                             <img width="350px" src="/storage/{{ $store->img }}" alt="Amazon" title="{{ $store->title }}">
                         <br>
                         <br>
-                            <div class="text_zoom"><img src="https://orix.kz/components/com_jshopping/images/search.png" alt="zoom">Увеличить изображение</div></a></span></div>
+                            <div class="text_zoom"><img src="/components/com_jshopping/images/search.png" alt="zoom">Увеличить изображение</div></a></span></div>
                                 <div class="span8 jshop_img_description">
                                     <span id="list_product_image_thumb"></span>
                                 </div>

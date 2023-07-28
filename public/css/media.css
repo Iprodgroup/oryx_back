@@ -1,0 +1,416 @@
+@media (min-width: 1300px) {
+    .container {
+        max-width: 1245px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .parcel-link {
+        margin: 0 10px;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .parcels-inputs {
+        margin: 20px 0;
+    }
+
+    .transact-link {
+        font-size: 14px;
+        padding: 10px;
+        margin: 1px;
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .table-parcels, .table-block {
+        overflow-x: auto;
+        margin-bottom: 30px;
+    }
+
+    .table-parcels::-webkit-scrollbar-track {
+        background-color: #ffffff;
+    }
+
+    .table-parcels::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .table-parcels::-webkit-scrollbar-thumb {
+        background-color: #E65A57;
+    }
+
+    .table-block::-webkit-scrollbar-track {
+        background-color: #ffffff;
+    }
+
+    .table-block::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .table-block::-webkit-scrollbar-thumb {
+        background-color: #E65A57;
+    }
+
+    .btn-cancel {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 225px;
+    }
+
+    .parcels-nav .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .create-flex {
+        max-width: 100% !important;
+    }
+
+    .transaction.whitebox {
+        max-width: 450px;
+    }
+
+    .account-blocks {
+        justify-content: center;
+    }
+
+    .whitebox {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    img.confirm-img {
+        display: none;
+    }
+
+    .confirmed-mail {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .confirm-head {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .emailverif-box svg {
+        width: 25px;
+        height: auto;
+        left: 15px;
+        top: 20px;
+        display: none;
+    }
+
+    .emailverif-box {
+        width: 100%;
+        padding: 15px;
+        /* padding-left: 52px; */
+    }
+
+    .title24 {
+        font-size: 22px;
+        line-height: 1.5;
+    }
+
+    .emailverif-body {
+        font-size: 14px;
+    }
+
+
+    .loginwrap > div {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .loginbox {
+        margin-bottom: 50px;
+    }
+
+    .head {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .my-parcels.whitebox {
+        max-width: 500px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .main-block-adress {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .right-adresses {
+        max-width: 100%;
+    }
+
+    .main-head {
+        font-size: 18px;
+    }
+
+    .title {
+        font-size: 25px;
+        line-height: 1.5;
+    }
+
+    .w-49prec {
+        width: 100%;
+    }
+
+    .transaction.whitebox {
+        max-width: 500px;
+    }
+
+    .acc-card.whitebox {
+        max-width: 500px;
+    }
+
+    .footer-top {
+        padding: 30px 0;
+    }
+
+    .footer-left {
+        margin-bottom: 20px;
+    }
+
+    .footer-item {
+        margin-bottom: 20px;
+    }
+
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+
+    .footer-left a:first-child, .footer-left a {
+        border: none;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .footer-top {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-left {
+        justify-content: center;
+    }
+
+    .footer-btn {
+        margin-bottom: 10px;
+    }
+
+    .footer-menu1 {
+        column-count: 2;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .pers-area > a {
+        font-size: 14px;
+    }
+
+    .parcel-link:nth-last-child(-n+2):not(:nth-child(even)) {
+        width: 100%;
+    }
+
+    .parcel-link {
+        width: 49%;
+        border-radius: 10px;
+    }
+
+    .pers-area > svg {
+        margin-right: 5px;
+    }
+
+    a.openMenu {
+        margin-right: -15px;
+    }
+
+    .item-numbers {
+        right: -10px;
+    }
+
+    .logo img {
+        width: 100px;
+        /* margin-top: 2px; */
+    }
+
+    .dropdown-area {
+        right: -40px;
+        z-index: 25;
+    }
+
+    .pers-area {
+        padding-right: 0;
+    }
+
+    a.register {
+        display: block;
+        padding-right: 0;
+    }
+
+    .menu-btn_wrap1 {
+        flex-direction: column;
+        margin-right: 5px;
+    }
+
+
+    .menu-btn_wrap .btn-register {
+        display: none;
+    }
+
+    .menu-btn_wrap {
+        margin-right: 0;
+    }
+
+    .btn-orange.btn-login {
+        margin-right: 0;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .btn-orange.btn-login svg {
+        width: 15px;
+        height: auto;
+        margin-right: 3px;
+        margin-top: -4px;
+    }
+
+    .social-login_link {
+        padding-left: 20px;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .loginform-link_wrap {
+        flex-direction: column;
+    }
+
+    .btn-regist {
+        margin-right: 0;
+        padding-right: 0;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    nav.mainnav {
+        padding: 20px;
+        padding-top: 100px;
+    }
+
+    .parcel-link {
+        color: #E65A57;
+        border: 2px solid #E65A57;
+        padding: 5px;
+        margin: 2px;
+        flex-grow: 1;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .mark-all {
+        margin-top: 10px;
+    }
+
+    .mark-button {
+        font-size: 14px;
+    }
+
+    .parcels-nav {
+        background: none;
+        background: #f4f5fe;
+        position: unset;
+    }
+
+    .parcel-link.active {
+        background: #E65A57;
+        border: 2px solid #E65A57;
+        font-size: 14px;
+    }
+
+    .modal-flex input, .modal-flex select {
+        width: 100%;
+    }
+
+    .modal-fon .modal-body {
+        padding: 30px;
+    }
+
+    .modal-file {
+        width: 100%;
+    }
+
+    .parcel-link:Hover {
+        background: #E65A57;
+        border: 2px solid #E65A57;
+        font-size: 14px;
+    }
+
+    .avatar {
+        margin-bottom: 20px;
+    }
+
+    .whitebox {
+        padding: 30px;
+    }
+
+    .modal-submit.btn-orange {
+        width: 100%;
+        max-width: 225px;
+        text-align: center;
+    }
+
+    .main-block-adress {
+        padding: 30px;
+        margin-right: 0;
+    }
+
+    .parcels-inputs {
+        margin-bottom: 0;
+    }
+
+}
+
+
+@media (max-width: 375px) {
+    .copy {
+        font-size: 12px;
+        padding: 5px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
