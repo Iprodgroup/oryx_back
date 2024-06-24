@@ -1,11 +1,21 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
-
         <div id="content" class="container">
-            <div class="jr_component">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">О компании</li>
+                </ol>
+            </nav>
+            <div class="jr_component" style="padding-top: 50px;">
                 <div class="jr_full">
 
                     <div id="system-message-container">
@@ -20,23 +30,15 @@
                                  style="max-width: 1080px;margin-left: 0;">
                                 <div class="about-img about-img_anim">
                                     <div class="list"></div>
-                                    <img src="{{ asset('/images/site/box1.png') }}" class="box box1">
-                                    <img src="{{ asset('/images/site/box2.png') }}" class="box box2">
-                                    <img src="{{ asset('/images/site/man2.png') }}" class="man2">
+                                    <img src="{{ asset('/images/site/box1.png') }}" class="box box1" alt="list">
+                                    <img src="{{ asset('/images/site/box2.png') }}" class="box box2" alt="list">
+                                    <img src="{{ asset('/images/site/man2.png') }}" class="man2" alt="list">
                                 </div>
 
                                 <div class="about-item" style="max-width:500px">
 
-                                    <h1 class="title about-title">
-                                        О компании
-                                    </h1>
-                                    <div class="text about-text">
-                                        ORYX – это надежный мейлфорвардер, имеющий собственный
-                                        автоматизированный склад в безналоговом штате Америки. Покупка и
-                                        доставка из США любых товаров – наша основная деятельность. Мы
-                                        сотрудничаем с лучшими перевозчиками долго и плодотворно благодаря этому
-                                        готовы предложить доступную стоимость доставки.
-                                    </div>
+                                    <h1 class="title about-title">{{ $data['h1'] }}</h1>
+                                    <div class="text about-text">{{ $data['text'] }}</div>
                                 </div>
 
                             </div>
@@ -49,10 +51,10 @@
 
                                 <div class="sklad-item">
                                     <div class="sklad-img">
-                                        <img src="{{ asset('/images/site/sklad1.jpg') }}">
+                                        <img src="{{ asset('/images/site/sklad1.jpg') }}" alt="about">
                                     </div>
                                     <div class="sklad-img">
-                                        <img src="{{ asset('/images/site/sklad2.jpg') }}">
+                                        <img src="{{ asset('/images/site/sklad2.jpg') }}" alt="about">
                                     </div>
 
                                     <div class="sklad-head">
@@ -72,10 +74,10 @@
 
                                 <div class="sklad-item">
                                     <div class="sklad-img">
-                                        <img src="{{ asset('/images/site/sklad3.jpg') }}">
+                                        <img src="{{ asset('/images/site/sklad3.jpg') }}" alt="sklad">
                                     </div>
                                     <div class="sklad-img">
-                                        <img src="{{ asset('/images/site/sklad4.jpg') }}">
+                                        <img src="{{ asset('/images/site/sklad4.jpg') }}" alt="sklad">
                                     </div>
                                     <div class="sklad-head">
                                         Упаковка и хранение посылок
@@ -92,69 +94,6 @@
                                 </div>
 
                             </div>
-                            <!--<div class="about about1 flex flex-wrap between align-center mb-100px" style="max-width: 1080px;margin-left: 0;">
-
-                              <div class="about-img about-img_anim">
-                                <div class="list"></div>
-                                <img src="/images/site/box1.png" class="box box1">
-                                <img src="/images/site/box2.png" class="box box2">
-                                <img src="/images/site/man2.png" class="man2">
-                              </div>
-
-                              <div class="about-item" style="max-width:500px">
-
-                                <div class="title about-title">
-                                  О компании
-                                </div>
-                                <div class="text about-text">
-                                  ORYX – это надежный мейлфорвардер, имеющий собственный автоматизированный склад в безналоговом штате Америки. Покупка и доставка из США любых товаров – наша основная деятельность. Мы сотрудничаем с лучшими перевозчиками долго и плодотворно благодаря этому готовы предложить доступную стоимость доставки.
-                                </div>
-                              </div>
-
-                            </div>
-
-
-
-
-                            <div class="title skad-title">
-                              Наш склад в США
-                            </div>
-
-                            <div class="sklad flex flex-wrap between">
-
-                              <div class="sklad-item">
-                                <div class="sklad-img">
-                                  <img src="/images/site/sklad1.jpg">
-                                </div>
-                                <div class="sklad-img">
-                                  <img src="/images/site/sklad2.jpg">
-                                </div>
-
-                                <div class="sklad-head">
-                                  Мини-описание
-                                </div>
-                                <div class="sklad-text">
-                                  Мини-описание. Это текст о компании. Он необходим для дальнейшего продвижения Вашего сайта. Вам будет необходимо предоставить исходные данные, по которым наши копирайтеры составят правильный текст, который будет содержать в себе информацию о деятельности компании.
-                                </div>
-                              </div>
-
-                              <div class="sklad-item">
-                                <div class="sklad-img">
-                                  <img src="/images/site/sklad3.jpg">
-                                </div>
-                                <div class="sklad-img">
-                                  <img src="/images/site/sklad4.jpg">
-                                </div>
-                                <div class="sklad-head">
-                                  Мини-описание
-                                </div>
-                                <div class="sklad-text">
-                                  Мини-описание. Это текст о компании. Он необходим для дальнейшего продвижения Вашего сайта. Вам будет необходимо предоставить исходные данные, по которым наши копирайтеры составят правильный текст, который будет содержать в себе информацию о деятельности компании.
-                                </div>
-                              </div>
-
-
-                            </div> -->
                         </div>
 
 

@@ -30,9 +30,11 @@
                             <a href="/profile" class="bt btn-gray footer-btn">
                                 личный кабинет
                             </a>
-                            <a href="/panel" class="bt btn-gray footer-btn">
-                                Вход для сотрудников
-                            </a>
+                            @if(Auth::user()->roles()->first()->id <= 2)
+                                <a href="/panel" class="bt btn-gray footer-btn">
+                                    Вход для сотрудников
+                                </a>
+                            @endif
                         </div>
                     @endauth
                     @guest()
@@ -50,10 +52,13 @@
                 <div class="row">
                     <div class="col-md-7 col-sm-8">
                         <div style="padding-top: 15px;" class="subscribe-edit">
-                            <form action="/email" method="post" class="subscribe-form" novalidate="novalidate">
+                            <form action="/email" method="post" class="subscribe-form" novalidate="novalidate" style="min-width: 350px; max-width: 500px">
+                                <input id="num" style="margin-right: -40px; font-size: 22px; padding: 23px; padding-right: 60px; border-radius: 25px; width: 100%" size="30" type="tel" maxlength="255" name="name" class="form-control subscribe-input required" placeholder="Имя" required="required" aria-required="true" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+                                <br>
                                 <div class="" style="display: flex; justify-content: start; align-items: center">
                                     @csrf
-                                    <input id="num" style="margin-right: -40px; font-size: 22px; padding: 23px; padding-right: 60px; border-radius: 25px; width: 70%" size="30" type="tel" maxlength="255" name="email" class="form-control subscribe-input required" placeholder="введите емаил или номер" required="required" aria-required="true" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+
+                                    <input id="num" style="margin-right: -40px; font-size: 22px; padding: 23px; padding-right: 60px; border-radius: 25px; width: 100%" size="30" type="tel" maxlength="255" name="email" class="form-control subscribe-input required" placeholder="Введите емаил или номер" required="required" aria-required="true" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
                                     <button style="border-radius: 25px; background-color: #e65a57; color: white;" type="submit" class="btn btn-default btn-lg subscribe-btn round-ignore">
                                         Отправить
                                     </button>
@@ -77,7 +82,7 @@
 
                 <div class="footer-logo">
                     <a href="\">
-                        <img src=" {{ asset('assets/images/footerlogo.png') }} ">
+                        <img src=" {{ asset('assets/images/footerlogo.png') }}" alt="footerlogo">
                     </a>
                 </div>
 
@@ -90,7 +95,7 @@
                         <a href="/populyarnye-magaziny">Популярные магазины в США</a>
                         <a href="/otzyvy">Отзывы клиентов</a>
                         <a href="/usloviya-servisa">Помощь в работе с сервисом</a>
-                        <a href="/novosti">Новости / акции</a>
+                        <a href="/novosti">Полезное</a>
                         <a href="/kontakty">Контакты</a>
                     </div>
                 </div>
@@ -120,7 +125,7 @@
                         </svg>
                     </a>
 
-                    <a href="https://instagram.com/orix.usa?utm_medium=copy_link" class="footersocial-link">
+                    <a href="https://www.instagram.com/oryx.usa.kz/" class="footersocial-link">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                   d="M14.3699 0.334961C6.84245 0.334961 0.740234 6.43717 0.740234 13.9646C0.740234 21.4921 6.84245 27.5943 14.3699 27.5943C21.8974 27.5943 27.9996 21.4921 27.9996 13.9646C27.9996 6.43717 21.8974 0.334961 14.3699 0.334961ZM11.3733 6.73942C12.1487 6.70413 12.3964 6.6955 14.3706 6.6955H14.3683C16.3432 6.6955 16.59 6.70413 17.3654 6.73942C18.1393 6.77486 18.6678 6.89737 19.1312 7.07714C19.6098 7.26265 20.0141 7.51102 20.4185 7.91537C20.8228 8.31942 21.0712 8.72498 21.2575 9.20308C21.4362 9.66529 21.5588 10.1935 21.5952 10.9674C21.63 11.7428 21.6391 11.9905 21.6391 13.9647C21.6391 15.9389 21.63 16.1861 21.5952 16.9615C21.5588 17.735 21.4362 18.2634 21.2575 18.7258C21.0712 19.2037 20.8228 19.6093 20.4185 20.0133C20.0146 20.4177 19.6096 20.6667 19.1317 20.8523C18.6692 21.0321 18.1403 21.1546 17.3664 21.19C16.5911 21.2253 16.3441 21.234 14.3697 21.234C12.3957 21.234 12.148 21.2253 11.3727 21.19C10.5989 21.1546 10.0706 21.0321 9.60805 20.8523C9.13025 20.6667 8.72469 20.4177 8.32079 20.0133C7.91659 19.6093 7.66823 19.2037 7.48241 18.7256C7.3028 18.2634 7.18028 17.7352 7.14469 16.9613C7.10956 16.1859 7.10077 15.9389 7.10077 13.9647C7.10077 11.9905 7.10986 11.7426 7.14454 10.9672C7.17937 10.1937 7.30204 9.66529 7.48226 9.20293C7.66853 8.72498 7.9169 8.31942 8.32125 7.91537C8.7253 7.51117 9.13086 7.2628 9.60896 7.07714C10.0712 6.89737 10.5994 6.77486 11.3733 6.73942Z"
@@ -134,6 +139,44 @@
                         </svg>
                     </a>
 
+                    <!-- ZERO.kz -->
+                    <style>
+                        #_zero_74492 {
+                            /*margin-left: 10px;
+                            border: 2px solid red;
+                            border-radius: 3px;*/
+                        }
+                        #_zero_74492 img {
+                            display: none;
+                        }
+                    </style>
+                    <span id="_zero_74492">
+  <noscript>
+    <a href="http://zero.kz/?s=74492" target="_blank">
+      <img src="http://c.zero.kz/z.png?u=74492" width="88" height="31" alt="ZERO.kz" />
+    </a>
+  </noscript>
+</span>
+
+                    <script type="text/javascript"><!--
+                        var _zero_kz_ = _zero_kz_ || [];
+                        _zero_kz_.push(["id", 74492]);
+                        // Цвет кнопки
+                        _zero_kz_.push(["type", 1]);
+                        // Проверять url каждые 200 мс, при изменении перегружать код счётчика
+                        // _zero_kz_.push(["url_watcher", 200]);
+
+                        (function () {
+                            var a = document.getElementsByTagName("script")[0],
+                                s = document.createElement("script");
+                            s.type = "text/javascript";
+                            s.async = true;
+                            s.src = (document.location.protocol == "https:" ? "https:" : "http:")
+                                + "//c.zero.kz/z.js";
+                            a.parentNode.insertBefore(s, a);
+                        })(); //-->
+                    </script>
+                    <!-- End ZERO.kz -->
                 </div>
             </div>
         </div>

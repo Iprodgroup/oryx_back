@@ -5,11 +5,9 @@
         <div class="slider-item">
             <div class="container flex flex-wrap between align-center">
                 <div class="slider-content">
-                    <div class="slider-head">
-                        <b>Быстрая доставка</b>
-                        посылок из США
-                        в Казахстан
-                    </div>
+                    <h1 class="slider-head">
+                        <b>Быстрая доставка</b> посылок из США в Казахстан
+                    </h1>
                     <div class="slider-text">
                         Доставка авиа перелетом из США от 7 дней
                     </div>
@@ -17,7 +15,7 @@
                         <a href="/register"><div class="bt btn-red slider-btn">Получите свой адрес в США!</div></a>
                 </div>
                 <div class="slider-img">
-                    <img src=" {{ asset('assets/images/box0.png') }} " class="sliderbox"
+                    <img src=" {{ asset('assets/images/box0.png') }} " class="sliderbox" alt="slider"
                          style="top: 7%;">
 
                     <div id="scene" data-friction-x="0.1" data-friction-y="0.1" data-scalar-x="25"
@@ -25,7 +23,7 @@
                          style="transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; position: relative; pointer-events: none;">
                         <div data-depth="0.10"
                              style="transform: translate3d(-0.6px, -2px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
-                            <img src=" {{ asset('assets/images/slider.png') }} " class="sliderimg">
+                            <img src=" {{ asset('assets/images/slider.png') }} " class="sliderimg" alt="sliderimg">
                         </div>
                     </div>
 
@@ -46,7 +44,7 @@
                  data-wow-delay="0.5s"
                  style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.5s; animation-name: fadeInUp;">
                 <div class="feat-img">
-                    <img src=" {{ asset('assets/images/f1.png') }} ">
+                    <img src="{{ asset('assets/images/f1.png') }}" alt="slider">
                 </div>
                 <div class="feat-content">
                     <div class="feat-name">
@@ -62,7 +60,7 @@
                  data-wow-delay="0.8s"
                  style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.8s; animation-name: fadeInUp;">
                 <div class="feat-img">
-                    <img src=" {{ asset('assets/images/f2.png') }} ">
+                    <img src=" {{ asset('assets/images/f2.png') }} " alt="f2">
                 </div>
                 <div class="feat-content">
                     <div class="feat-name">
@@ -78,7 +76,7 @@
                  data-wow-delay="1s"
                  style="visibility: visible; animation-duration: 1.5s; animation-delay: 1s; animation-name: fadeInUp;">
                 <div class="feat-img">
-                    <img src=" {{ asset('assets/images/f3.png') }} ">
+                    <img src=" {{ asset('assets/images/f3.png') }} " alt="f2">
                 </div>
                 <div class="feat-content">
                     <div class="feat-name">
@@ -94,7 +92,7 @@
                  data-wow-delay="1.2s"
                  style="visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInUp;">
                 <div class="feat-img">
-                    <img src=" {{ asset('assets/images/f4.png') }} ">
+                    <img src=" {{ asset('assets/images/f4.png') }} " alt="f2">
                 </div>
                 <div class="feat-content">
                     <div class="feat-name">

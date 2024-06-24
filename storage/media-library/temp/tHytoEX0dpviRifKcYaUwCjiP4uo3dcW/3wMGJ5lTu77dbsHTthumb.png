@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="41" viewBox="0 0 40 41">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="40" height="41" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="price" clip-path="url(#clip-path)">
+    <path id="Path_2150" data-name="Path 2150" d="M0,0H40V40H0Z" transform="translate(0 0.501)" fill="none"/>
+    <g id="B4M" transform="translate(3 0.5)">
+      <g id="Symbol_41_1" transform="translate(7.976)">
+        <path id="Path_590" d="M1043.6,235.742v-.654a9.115,9.115,0,0,1,8.689-9.288h.252a9.093,9.093,0,0,1,8.941,9.026V236" transform="translate(-1043.474 -225.8)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+        <path id="Path_591" d="M1061.382,238.3a9.115,9.115,0,0,1-8.689,9.288h-.252a9.093,9.093,0,0,1-8.941-9.026V238.3" transform="translate(-1043.5 -221.948)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+      </g>
+      <path id="Path_2135" data-name="Path 2135" d="M30.222,38.126H3.778A3.784,3.784,0,0,1,0,34.2V12.225A3.784,3.784,0,0,1,3.778,8.3H30.222A3.784,3.784,0,0,1,34,12.225V34.2A3.863,3.863,0,0,1,30.222,38.126Z" transform="translate(0 1.874)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

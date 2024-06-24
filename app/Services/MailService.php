@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Mail;
 class MailService
 {
     public function send() {
-        Mail::to('bexruzfatullayev999@gmail.com')->send(new ContactShipped());
+        Mail::to('ofis@orix.kz')->send(new ContactShipped());
     }
 }

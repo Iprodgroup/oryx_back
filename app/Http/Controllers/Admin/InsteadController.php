@@ -67,7 +67,11 @@ class InsteadController extends Controller
         $item->fill($request->all())->save();
 
         if($old != $item->status){
-            Mail::send('emails.notification', ['text' => "Статус вашей заявки по товару ".$item->name." ".__('ui.istatus.'.$item->status)], function ($m) use ($item) {
+            Mail::send(
+                'emails.notification',
+                ['text' => "Статус вашей заявки по товару ".$item->name." "
+                    .__('ui.istatus.'.$item->status)],
+                function ($m) use ($item) {
                 $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
                 $m->to($item->user->email, $item->user->name)->subject('Помощь при покупке');
             });

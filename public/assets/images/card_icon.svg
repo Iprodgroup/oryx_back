@@ -1,0 +1,8 @@
+<svg id="card_icon" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+  <path id="Path_595" data-name="Path 595" d="M0,0H70V70H0Z" fill="#fff" opacity="0"/>
+  <g id="Group_40" data-name="Group 40" transform="translate(2.917 11.669)">
+    <path id="Path_79" data-name="Path 79" d="M61.992,47.176H3.174A2.489,2.489,0,0,1,.5,44.583V3.093A2.489,2.489,0,0,1,3.174.5H61.992a2.489,2.489,0,0,1,2.674,2.593v41.49A2.489,2.489,0,0,1,61.992,47.176Z" transform="translate(-0.5 -0.5)" fill="none" stroke="#e87722" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+    <rect id="Rectangle_12" data-name="Rectangle 12" width="64.165" height="5.835" transform="translate(0 11.669)" fill="#e87722"/>
+    <line id="Line_1" data-name="Line 1" x2="17.504" transform="translate(4.376 27.714)" fill="none" stroke="#e87722" stroke-width="2"/>
+  </g>
+</svg>

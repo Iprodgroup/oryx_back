@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,14 +19,16 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileParcelController extends Controller
 {
-    public function index(Request $request)
+	public function index(Request $request)
     {
-        $items = Parcel::where('user_id', Auth::user()->id)->where('status', $request->input('status', 0));
+        $items = Parcel::with('goods')->where('user_id', Auth::user()->id)->where('status', $request->input('status', 0));
+
         if ($request->input('s', '')) {
             $items = $items->where('name', 'like', "%" . $request->input('s') . "%")
                 ->orWhere('track', 'like', "%" . $request->input('s') . "%")
                 ->orWhere('id', 'like', "%" . $request->input('s') . "%");
         }
+
         $items = $items->get();
 
         $cities = [];
@@ -41,12 +44,14 @@ class ProfileParcelController extends Controller
         return view('profile.parcels', compact('items', 'cities'));
     }
 
+
     public function create()
     {
         $recipients = [];
         foreach (Auth::user()->recipients as $recipient) {
             $recipients[$recipient->id] = $recipient->surname . ' ' . $recipient->name . ' ' . $recipient->fname;
         }
+
         $countries = Setting::where([['type', 2], ['active', 1]])->get();
         $countries_out = [];
         $cities = [];
@@ -61,6 +66,7 @@ class ProfileParcelController extends Controller
 
     public function store(Request $request)
     {
+
         DB::beginTransaction();
         try {
             $request->validate([
@@ -69,18 +75,26 @@ class ProfileParcelController extends Controller
                 'recipient_id' => 'required',
                 'goods.name.*' => 'required',
                 'goods.price.*' => 'required|numeric|min:0',
+                'city_out' => 'required'
             ]);
 
             if ($request['prod_price'] == null) {
                 $request ['prod_price'] = 0;
             }
 
+            $country = Address::where('id', $request['city_out'])->first();
+
+
+            if ($country) { $request['country_out'] = (int)$country->tab;}
+
             $item = Parcel::create(array_merge($request->all(), ['user_id' => Auth::user()->id]));
 
             $input_goods = $request->input('goods');
             $goods = [];
 
-            for ($i = 0; $i < count($input_goods['name']); $i++) {
+            $count = count($input_goods['name']);
+
+            for ($i = 0; $i < $count; $i++) {
                 $goods[] = new ParcelGood([
                     'parcel_id' => $item->id,
                     'name' => $input_goods['name'][$i],
@@ -91,38 +105,38 @@ class ProfileParcelController extends Controller
 
             $item->goods()->saveMany($goods);
 
-
-            //$item->push();
-
             $this->sendNotifiaction(Auth::user(), 'regp', ['track' => $item->track, 'fio' => $item->fio]);
 
             //Integration
-            $fromClient = User::where('id', $item['user_id'])->get();
-            $toClient = Recipient::where('id', $item['recipient_id'])->get();
-
-            Log::info(['user id ' => $fromClient[0]['id']]);
-            Log::info(['recipient id ' => $toClient[0]['id']]);
-
-            $products = [];
-            foreach ($goods as $good) {
-                $products[] = [
-                    "name" => $good['name'],
-                    "quantity" => 1,
-                    "product_price" => $good['price'],
-                    "tracking_code" => $item['track']
-                ];
-            }
-            $parcelIntegrationId = $this->createDial(
-                $fromClient[0]['surname'] . ' ' . $fromClient[0]['name'], $this->validatePhone($fromClient[0]['phone']),
-                $toClient[0]['surname'] . ' ' . $toClient[0]['name'], $this->validatePhone($toClient[0]['phone']),
-                $item['track'], $products
-            )['result']['id'];
-            Parcel::where('id', $item['id'])->update(['integration_id' => $parcelIntegrationId]);
+//            $fromClient = User::where('id', $item['user_id'])->get();
+//            $toClient = Recipient::where('id', $item['recipient_id'])->get();
+//
+//            Log::info(['user id ' => $fromClient[0]['id']]);
+//            Log::info(['recipient id ' => $toClient[0]['id']]);
+//
+//            $products = [];
+//            foreach ($goods as $good) {
+//                $products[] = [
+//                    "name" => $good['name'],
+//                    "quantity" => 1,
+//                    "product_price" => $good['price'],
+//                    "tracking_code" => $item['track']
+//                ];
+//            }
+//            $parcelIntegrationId = $this->createDial(
+//                $fromClient[0]['surname'] . ' ' . $fromClient[0]['name'], $this->validatePhone($fromClient[0]['phone']),
+//                $toClient[0]['surname'] . ' ' . $toClient[0]['name'], $this->validatePhone($toClient[0]['phone']),
+//                $item['track'], $products
+//            )['result']['id'];
+//
+//            Parcel::where('id', $item['id'])->update(['integration_id' => $parcelIntegrationId]);
             //
             DB::commit();
             return redirect()->route('profile.parcels');
+
         } catch (\Exception $exception){
             DB::rollBack();
+            dd($exception);
             abort(500);
         }
 //        return redirect()->route('profile.parcels');

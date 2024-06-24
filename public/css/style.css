@@ -300,8 +300,6 @@ header {
     width: 100%;
     z-index: 20;
     padding-top:  40px;
-    padding-top: 25px;
-    padding-top: 25px;
     transition: 0.5s;
 }
 .internal-page header {
@@ -1083,7 +1081,6 @@ p.input-item {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-right: 5px;
 }
 .transact-link span {
     margin-left: 5px;

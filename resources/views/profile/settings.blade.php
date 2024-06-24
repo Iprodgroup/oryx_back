@@ -171,16 +171,16 @@
 
                             <div class="modal-information" style="font-size: 14px; margin-bottom: 20px;">
                                 Прикрепите скан или фото обеих сторон удостоверения личности отдельными файлами в
-                                формате jpg, png, pdf
+                                формате jpg, png
                             </div>
                             <div class="modal-file_wrap flex flex-wrap between">
                                 <div class="modal-file">
                                     <label>Прикрепить сторону А *</label>
-                                    <input type="file" name="file1" required>
+                                    <input type="file" name="file1" accept=".png, .jpg" required>
                                 </div>
                                 <div class="modal-file">
                                     <label>Прикрепить сторону Б *</label>
-                                    <input type="file" name="file2" required>
+                                    <input type="file" name="file2" accept=".png, .jpg" required>
                                 </div>
                             </div>
 

@@ -74,9 +74,11 @@ class AdminController extends Controller
         return redirect()->route('admins.index');
     }
 
-    public function edit(User $item, $id)
+    public function edit(User $item)
     {
-        abort_if(Gate::denies('admins'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
+        $id = Auth::id();
+        abort_if(!Gate::denies('admins'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $item = User::findOrFail($id);
         $roles = Role::where('name','!=','users')->orderBy('title')->pluck('title', 'id');
         $cities = [''=>''];

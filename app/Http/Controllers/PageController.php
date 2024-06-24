@@ -8,70 +8,148 @@ use App\Mail\OrderShipped;
 use App\Models\Category;
 use App\Models\Category_Store;
 use App\Models\Element;
+use App\Models\News;
 use App\Models\Question;
 use App\Models\Review;
 use App\Models\Store;
+use App\Services\ShortcodeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
-    public function about () {return view('pages.about');}
+    public function about () {
+
+        $data = ShortcodeService::doShortcode('o-kompanii');
+
+        return view('pages.about', ['data' => $data]);
+    }
+
     public function popularStores (Request $request) {
 
+        //dd($request->extra_fields);
         if ($request->extra_fields) {
             $selects = $request->extra_fields;
+            session()->put('selects', $selects);
             $fields = Category_Store::whereIn('category_id', $selects)->get();
             $fields = collect($fields)->pluck('store_id')->all();
-            $stores = Store::whereIn('id', $fields)->where('status', 'active')->inRandomOrder()->paginate(16);
-        } else {$stores = Store::where('status', 'active')->inRandomOrder()->paginate(16); $selects = [];}
+            $stores = Store::whereIn('id', $fields)->where('status', 'active')->paginate(16);
+        } else {
+            $selects = session()->get('selects') ?? [];
+            $fields = Category_Store::whereIn('category_id', $selects)->get();
+            $fields = collect($fields)->pluck('store_id')->all();
+            $stores = Store::whereIn('id', $fields)->where('status', 'active')->paginate(16);
+        }
 
         $categories = Category::get();
 
         if ($stores) {
-            return view('pages.popularStores', ['stores' => $stores, 'categories' => $categories, 'selects' => $selects]);
+
+            $data = ShortcodeService::doShortcode('populiarnye');
+
+            return view('pages.popularStores', [
+                'stores'        => $stores,
+                'categories'    => $categories,
+                'selects'       => $selects,
+                'data'          => $data
+            ]);
         } else return redirect('404');
 
     }
 
-    public function product ($slug) {
+    public function store ($slug) {
         $store = Store::where('slug', $slug)->first();
         if ($store) {
-            return view('pages.product', ['store' => $store]);
+
+            $data = ShortcodeService::doShortcode('magazin', ['store-name' => $store->name]);
+
+            return view('pages.product', ['store' => $store, 'data' => $data]);
         } else return redirect('404');
     }
 
     public function reviews () {
         $reviews = Review::where('status', 'active')->get();
 
-        return view('pages.reviews', ['reviews' => $reviews]);
+        $data = ShortcodeService::doShortcode('otzyvy');
+
+        return view('pages.reviews', ['reviews' => $reviews, 'data' => $data]);
     }
 
     public function help () {
         $questions = Question::where('status', 'active')->get();
 
-        return view('pages.help', ['questions' => $questions]);
+        $data = ShortcodeService::doShortcode('usloviia');
+
+        return view('pages.help', ['questions' => $questions, 'data' => $data]);
     }
 
-    public function news () {return view('pages.news');}
+    public function news () {
 
-    public function zapreshenye () {return view('pages.zapreshenye');}
+        $news = News::where('status', 'active')->get();
+
+        $data = ShortcodeService::doShortcode('poleznoe');
+
+        return view('pages.news', ['data' => $data, 'news'  => $news]);
+    }
+    public function newsPage($slug) {
+
+        $new = News::where('slug', $slug)->first();
+
+        $data = ShortcodeService::doShortcode('novost', [
+            'new-name' => $new->name,
+            'new-description' => $new->description,
+            'new-img' => $new->img,
+            'new-title' => $new->title,
+            'new-meta-desc' => $new->meta_desc
+        ]);
+
+        return view('pages.news-page', ['new' => $new, 'data' => $data]);
+    }
+
+    public function zapreshenye () {
+
+        $data = ShortcodeService::doShortcode('zapreshheny');
+
+        return view('pages.zapreshenye', ['data' => $data]);
+    }
+
 
     public function contactsUs () {
         $contacts = Element::where('type', 'kontakty')->get();
 
-        return view('pages.contactUs', ['contacts' => $contacts]);
+        $data = ShortcodeService::doShortcode('kontakty');
+
+        return view('pages.contactUs', ['contacts' => $contacts, 'data' => $data]);
     }
 
-    public function politika () {return view('pages.politika');}
 
-    public function usloviya () {return view('pages.usloviya');}
+    public function politika () {
+
+        $rekvisit = Element::where('type', 'rekvisit')->get();
+
+        $data = ShortcodeService::doShortcode('politika');
+
+        return view('pages.politika', ['rekvisit' => $rekvisit, 'data' => $data]);
+    }
 
 
-    public function buy_me () {return view('pages.buy-me');}
+    public function usloviya () {
 
-    public function buy () {return view('pages.buy-me');}
+        $data = ShortcodeService::doShortcode('o-usloviia');
+
+        return view('pages.usloviya', ['data' => $data]);
+    }
+
+
+    public function buy_me () {
+
+        $data = ShortcodeService::doShortcode('kupite');
+
+        return view('pages.buy-me', ['data' => $data]);
+    }
+
+    //public function buy () {return view('pages.buy-me');}
 
     public function send(Request $request)
     {
@@ -96,7 +174,7 @@ class PageController extends Controller
 
         $purchase = ['nomer' => $nomer, 'products' => $products];
 
-        Mail::to('fatullayevbexruz011@gmail.com')->send(new OrderShipped($purchase));
+        Mail::to('ofis@orix.kz')->send(new OrderShipped($purchase));
 
         return redirect()->back()->with('status', 'success');
     }
@@ -104,10 +182,11 @@ class PageController extends Controller
     public function email(Request $request) {
 
         $email = Arr::get($request, 'email');
+        $name = Arr::get($request, 'name');
 
 
         if ($email) {
-            Mail::to('fatullayevbexruz011@gmail.com')->send(new Email($email));
+            Mail::to('ofis@orix.kz')->send(new Email($email, $name));
         }
 
         return redirect()->back()->with('status', 'success');

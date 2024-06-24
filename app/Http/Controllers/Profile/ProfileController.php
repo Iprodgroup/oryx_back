@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Referal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipient;
@@ -12,6 +13,7 @@ use App\Models\Instead;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -62,13 +64,30 @@ class ProfileController extends Controller
     {
         if(!$request->input('name') || !$request->input('surname'))
 			return redirect()->route('profile.nsettings');
-		$item = new Recipient();
-		$item->fill(array_merge($request->all(),['user_id'=>Auth::user()->id]));
-		$item->save();
-		if ($request->file('file1'))
-            $item->addMediaFromRequest('file1')->usingFileName(Str::slug($request->file1->getClientOriginalName()).'.'.$request->file2->getClientOriginalExtension())->toMediaCollection('pass');
-        if ($request->file('file2'))
-            $item->addMediaFromRequest('file2')->usingFileName(Str::slug($request->file2->getClientOriginalName()).'.'.$request->file2->getClientOriginalExtension())->toMediaCollection('pass');
+        $item = new Recipient();
+        $item->fill(array_merge($request->all(),['user_id'=>Auth::user()->id]));
+        $item->save();
+
+        $files = [];
+        $hash = Hash::make('link has been connected', );
+        if ($request->file('file1')) {
+            $originalName = $request->file('file1')->getClientOriginalName();
+            $path = "recipients/$item->id/".$hash.$originalName;
+
+            Storage::disk('private')->put($path, file_get_contents($request->file('file1')));
+            $files[] = $path;
+        }
+        //$item->addMediaFromRequest('file1')->usingFileName(Str::slug($request->file1->getClientOriginalName()).'.'.$request->file2->getClientOriginalExtension())->toMediaCollection('pass');
+        if ($request->file('file2')) {
+            $originalName = $request->file('file2')->getClientOriginalName();
+            $path = "recipients/$item->id/".$hash.$originalName;
+
+            Storage::disk('private')->put($path, file_get_contents($request->file('file2')));
+            $files[] = $path;
+        }
+        $item->files = json_encode($files);
+        $item->save();
+        //$item->addMediaFromRequest('file2')->usingFileName(Str::slug($request->file2->getClientOriginalName()).'.'.$request->file2->getClientOriginalExtension())->toMediaCollection('pass');
         // if ($request->file('file3'))
           //   $item->addMediaFromRequest('file3')->toMediaCollection('contract');
 
@@ -227,7 +246,12 @@ class ProfileController extends Controller
 
     public function referal(Request $request)
     {
-        return view('profile.referal');
+
+
+        $referals = Referal::with(['friend'])->whereHas('friend')->where('user_id', Auth::user()->id)->get();
+
+
+        return view('profile.referal', ['referals' => $referals]);
     }
 
     public function instead(Request $request)

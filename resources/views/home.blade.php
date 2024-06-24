@@ -1,11 +1,14 @@
 @extends('layouts.main')
 
+@section('meta')
+    <meta name="description" content="Заказывайте товары из США с доставкой в Казахстан от 7 дней! Оплачивайте любым удобным для Вас способом. Приглашайте друзей, получайте бонусы.">
+@endsection
+
 @section('content')
 
     @include('blocks.block1')
     <section class="block1">
         <div class="moduletable">
-
 
             <div class="custom">
                 <div class="container">
@@ -13,7 +16,7 @@
                     <div class="about about1 flex flex-wrap between align-center mb-50px" style="max-width: 1085px">
 
                         <div class="about-img wow fadeInLeft" data-wow-offset="25" data-wow-duration="1.5s" style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;">
-                            <img src="/images//site/about1.jpg">
+                            <img src="/images//site/about1.jpg" alt="about">
                         </div>
 
                         <div class="about-item wow fadeInRight" style="max-width: 510px; visibility: visible; animation-duration: 1.5s; animation-name: fadeInRight;" data-wow-offset="25" data-wow-duration="1.5s">

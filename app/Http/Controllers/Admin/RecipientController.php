@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Recipient;
 
 use Gate;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Support\Facades\Auth;
@@ -113,5 +115,14 @@ class RecipientController extends Controller
             $this->sendNotifiaction($item->user, 'recipients_rejected', ['fio'=>$item->user->fio,'text' => $request->input('registration')]);
         }
         return redirect()->route('recipients.index');
+    }
+
+    public function file($id, $file) {
+        abort_if(Gate::denies('recipients'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $item = Recipient::select(['id', 'files'])->findOrFail($id);
+        $files = json_decode($item->files, true);
+        $path = Arr::get($files, $file);
+        $path = Storage::disk('private')->path($path);
+        return response()->file($path);
     }
 }

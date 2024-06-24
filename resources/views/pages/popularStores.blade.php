@@ -1,20 +1,28 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
 
         <div class="container">
-            <div class="moduletable">
 
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Популярные</li>
+                </ol>
+            </nav>
+
+            <div class="moduletable">
                 <div class="custom">
-                    <div class="title joomcathead">
-                        Популярные магазины в США
-                    </div>
-                    <div class="text mb-50px" style="max-width: 650px;">
-                        Мы подготовили для вас список самых популярных магазинов одежды, которые диктуют тренды каждого
-                        сезона
-                    </div>
+                    <h1>{{ $data['h1'] }}</h1>
+                    <br>
+                    <div class="text mb-50px" style="max-width: 650px;">{{ $data['subtitle'] }}</div>
                 </div>
             </div>
 
@@ -104,16 +112,7 @@
                 Что чаще всего покупают в США?
             </div>
 
-            <div class="text shopseo-item">
-                Сейчас огромной популярностью пользуются интернет-магазины в США. В
-                Америке можно купить все, что угодно от одежды, бытовой техники и даже
-                автомобильных запчастей. На покупке оригинальных брендов Вы сэкономите
-                20-40% её офлайн стоимости, а на скидках можно сэкономить до 80-90%,
-                учитывая доставку. Помимо экономии, интернет-шоппинг в США отличается
-                огромным разнообразием ассортимента и эксклюзивных коллекций, которые
-                редко найдёшь в нашей стране.
-
-            </div>
+            <div class="text shopseo-item">{{ $data['text'] }}</div>
 
 
         </div>

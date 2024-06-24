@@ -1,9 +1,22 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
         <div id="content" class="container">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Полезное</li>
+                </ol>
+            </nav>
+
             <div class="jr_component">
                 <div class="jr_full">
 
@@ -13,130 +26,40 @@
                     <div class="blog  flex flex-wrap flex-row mb-100px" itemscope="" itemtype="https://schema.org/Blog">
 
                         <div class="category-desc clearfix">
-                            <div class="title news-title">
-                                Новости / Акции
-                            </div>
 
-                            <div class="text pl-15px mb-70px">
-                                Полезные статьи, акции и объявления компании
-                            </div>
+                            <h1 class="title about-title">{{ $data['h1'] }}</h1>
+
+                            <div class="text pl-15px mb-70px">{{ $data['text'] }}</div>
                         </div>
 
+                        @foreach($news as $new)
+                            <div class="items-row cols-1 row-0 row-fluid clearfix">
+                                <div class="span12">
+                                    <div class="item column-1" itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting">
 
-                        <div class="items-row cols-1 row-0 row-fluid clearfix">
-                            <div class="span12">
-                                <div class="item column-1" itemprop="blogPost" itemscope=""
-                                     itemtype="https://schema.org/BlogPosting">
+                                        <dl class="article-info muted">
 
+                                            <dt class="article-info-term">
+                                            </dt>
 
-                                    <dl class="article-info muted">
-
-
-                                        <dt class="article-info-term">
-                                        </dt>
-
-
-                                        <dd class="published">
-                                            <span class="icon-calendar" aria-hidden="true"></span>
-                                            <time datetime="2021-10-21T09:08:16+00:00" itemprop="datePublished">
-                                                <span class="date-day">21</span><span class="datefull">/10.2021</span>
-                                            </time>
-                                        </dd>
-                                    </dl>
+                                            <dd class="published">
+                                                <span class="icon-calendar" aria-hidden="true"></span>
+                                                <time datetime="2021-10-21T09:08:16+00:00" itemprop="datePublished">
+                                                    <span class="date-day">{{ $new->day }}</span><span class="datefull">{{ $new->date }}</span>
+                                                </time>
+                                            </dd>
+                                        </dl>
 
 
-                                    <div class="page-header">
-                                        <div class="blog-title">
-                                            <a href="/novosti/20-eto-tekst-o-kompanii-on-neobkhodim-dlya-dalnejshego-prodvizheniya-vashego-sajta"
-                                               itemprop="url">Это текст о компании. Он необходим для дальнейшего
-                                                продвижения Вашего сайта.</a>
+                                        <div class="page-header">
+                                            <div class="blog-title">
+                                                <a href="/novosti/{{ $new->slug }}" itemprop="url">{{ $new->short_desk }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end item -->
-                            </div><!-- end span -->
-                        </div><!-- end row -->
-                        <div class="items-row cols-1 row-1 row-fluid clearfix">
-                            <div class="span12">
-                                <div class="item column-1" itemprop="blogPost" itemscope=""
-                                     itemtype="https://schema.org/BlogPosting">
-
-                                    <dl class="article-info muted">
-
-                                        <dt class="article-info-term">
-                                        </dt>
-
-                                        <dd class="published">
-                                            <span class="icon-calendar" aria-hidden="true"></span>
-                                            <time datetime="2021-10-21T09:08:16+00:00" itemprop="datePublished">
-					<span class="date-day">
-					    21					</span>
-                                                <span class="datefull">
-					    /10.2021					</span>
-                                            </time>
-                                        </dd>
-
-
-                                    </dl>
-
-
-                                    <div class="page-header">
-                                        <div class="blog-title">
-                                            <a href="/novosti/21-eto-tekst" itemprop="url">
-                                                Это текст о компании. </a>
-                                        </div>
-
-
-                                    </div>
-
-
-                                </div>
-                                <!-- end item -->
-                            </div><!-- end span -->
-                        </div><!-- end row -->
-                        <div class="items-row cols-1 row-2 row-fluid clearfix">
-                            <div class="span12">
-                                <div class="item column-1" itemprop="blogPost" itemscope=""
-                                     itemtype="https://schema.org/BlogPosting">
-
-
-                                    <dl class="article-info muted">
-
-
-                                        <dt class="article-info-term">
-                                        </dt>
-
-
-                                        <dd class="published">
-                                            <span class="icon-calendar" aria-hidden="true"></span>
-                                            <time datetime="2021-10-21T09:08:16+00:00" itemprop="datePublished">
-					<span class="date-day">
-					    21					</span>
-                                                <span class="datefull">
-					    /10.2021					</span>
-                                            </time>
-                                        </dd>
-
-
-                                    </dl>
-
-
-                                    <div class="page-header">
-                                        <div class="blog-title">
-                                            <a href="/novosti/22-on-neobkhodim-dlya-dalnejshego-prodvizheniya-vashego-sajta"
-                                               itemprop="url">
-                                                Он необходим для дальнейшего продвижения Вашего сайта. </a>
-                                        </div>
-
-
-                                    </div>
-
-
-                                </div>
-                                <!-- end item -->
-                            </div><!-- end span -->
-                        </div><!-- end row -->
-
+                            </div>
+                        @endforeach
 
                     </div>
 

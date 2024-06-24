@@ -1,3 +1,6 @@
+<link href="/?format=feed&type=rss" rel="alternate" type="application/rss+xml" title="RSS 2.0">
+<link href="/?format=feed&type=atom" rel="alternate" type="application/atom+xml" title="Atom 1.0">
+
 <link rel="stylesheet" href=" {{ asset('assets/css/bootstrap.min.css') }} ">
 <link rel="stylesheet" href=" {{ asset('assets/css/jquery.fancybox.min.css') }} " type="text/css">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -170,6 +173,50 @@
         visibility: visible;
     }
 </style>
+
+{{--banner--}}
+<style>
+
+    .fixed .attention-bar {
+        opacity: 0;
+    }
+    .attention-bar {
+        background-color:#e87324;
+        width:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    .attention-bar>.container {
+        height:100%
+    }
+    .attention-bar__text--out {
+        min-height:40px;
+        height:100%;
+        padding:5px 0;
+        text-align:center
+    }
+    .attention-bar__text {
+        margin-right:50px;
+        display:inline-block;
+        vertical-align:middle;
+        vertical-align:-webkit-baseline-middle;
+        vertical-align:-moz-middle-with-baseline
+    }
+    .attention-bar .btn--close {
+        right:0;
+        top:7px
+    }
+    .attention-bar a,
+    .attention-bar__text {
+        color:#fff
+    }
+    .attention-bar a {
+        text-decoration:underline
+    }
+</style>
+<link rel="shortcut icon" href="/images/site/favicon.png" type="image/png">
 
 {{ $slot }}
 

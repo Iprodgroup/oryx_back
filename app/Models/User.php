@@ -16,10 +16,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 use \Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
+use App\Notifications\EmailVerificationNotification;
 
-class User extends Authenticatable implements HasMedia,MustVerifyEmail
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasRoles, InteractsWithMedia, RevisionableTrait, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, InteractsWithMedia, RevisionableTrait, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -133,5 +135,10 @@ class User extends Authenticatable implements HasMedia,MustVerifyEmail
         $p5 = substr($this->phone, 9, 2);
 
         return "+{$p1} ({$p2}) {$p3}-{$p4}-{$p5}";
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerificationNotification());
     }
 }

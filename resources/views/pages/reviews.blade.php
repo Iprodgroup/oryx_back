@@ -1,11 +1,24 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
 
 
         <div id="content" class="container">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Отзывы</li>
+                </ol>
+            </nav>
+
             <div class="jr_component">
                 <div class="jr_full">
 
@@ -14,14 +27,9 @@
 
                     <div class="item-page" itemscope="" itemtype="https://schema.org/Article">
                         <div itemprop="articleBody">
-                            <h1 class="title page-title">
-                                Отзывы наших клиентов
-                            </h1>
+                            <h1 class="title page-title">{{ $data['h1'] }}</h1>
 
-                            <div class="text mb-70px" style="max-width: 650px;">
-                                Мы подготовили для вас список самых популярных магазинов одежды, которые диктуют тренды
-                                каждого сезона
-                            </div>
+                            <div class="text mb-70px" style="max-width: 650px;">{{ $data['text'] }}</div>
 
                             <div class="reveiwflex row">
 

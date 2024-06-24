@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="40" height="40" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="special_sops" clip-path="url(#clip-path)">
+    <path id="Path_2153" data-name="Path 2153" d="M0,0H40V40H0Z" fill="none"/>
+    <g id="cart-plus" transform="translate(3 4)">
+      <path id="Path_2153-2" data-name="Path 2153" d="M28.292,19.947H9.592a1.754,1.754,0,0,1-1.53-2.432L10.1,13" transform="translate(2.138 5.237)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_2154" data-name="Path 2154" d="M36,5,28.69,18.026a1.777,1.777,0,0,1-1.53.868H14.24L7.44,5.868A1.512,1.512,0,0,0,6.08,5H2" transform="translate(-2 -0.658)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_2155" data-name="Path 2155" d="M10.95,18.5a2.606,2.606,0,0,0,0,5.211,2.606,2.606,0,0,0,0-5.211" transform="translate(2.48 9.289)" fill="#383838"/>
+      <path id="Path_2156" data-name="Path 2156" d="M17.95,18.5a2.606,2.606,0,0,0,0,5.211,2.643,2.643,0,0,0,2.55-2.605A2.532,2.532,0,0,0,17.95,18.5" transform="translate(7.38 9.289)" fill="#383838"/>
+      <path id="Path_2157" data-name="Path 2157" d="M15.59,12.747l-3.91,2.084.85-4.516L9.3,7.189l4.42-.695L15.59,2.5l2.04,3.995,4.42.695-3.23,3.126.85,4.516Z" transform="translate(3.11 -2.5)" fill="none" stroke="#383838" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

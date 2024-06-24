@@ -1,11 +1,24 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
 
 
         <div id="content" class="container">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Купите вместо меня</li>
+                </ol>
+            </nav>
+
             <div class="jr_component">
                 <div class="jr_full">
 
@@ -16,9 +29,7 @@
                         <meta itemprop="inLanguage" content="ru-RU">
 
                         <div itemprop="articleBody">
-                            <h1 class="title page-title">
-                                ORYX осуществит покупку вместо Вас
-                            </h1>
+                            <h1 class="title page-title">{{ $data['h1'] }}</h1>
 
                             <br>
                             <br>
@@ -101,7 +112,7 @@
                             <br>
                             <div class="row">
                                 <div class="buy-options col-lg-5 flex align-center">
-                                    <img width="60px" src="{{ asset('/assets/images/options.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/options.svg') }}" alt="options">
                                     <p style="margin-left: 15px; margin-top: 15px;"><b>Условия сервиса</b></p>
                                 </div>
                                 <div class="buy-options col-lg-7">Скопируйте ссылку на товар из интернет-магазина и
@@ -115,7 +126,7 @@
 
                                 <div class="buy-options col-lg-5 flex align-center">
 
-                                    <img width="60px" src="{{ asset('/assets/images/price.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/price.svg') }}" alt="price">
                                     <p style="margin-left: 15px; margin-top: 15px;"><b>Стоимость услуги </b></p>
                                 </div>
                                 <div class="buy-options col-lg-7">Стоимость услуги составляет 7% от общей стоимости
@@ -124,7 +135,7 @@
                                 </div>
 
                                 <div class="buy-options col-lg-5 flex align-center">
-                                    <img width="60px" src="{{ asset('/assets/images/special_shop.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/special_shop.svg') }}" alt="shop">
                                     <p style="margin-left: 15px; margin-top: 15px;"><b>Специальные магазины</b></p>
                                 </div>
                                 <div class="buy-options col-lg-7">Есть ряд магазинов, которые не доставляют на адреса
@@ -144,17 +155,17 @@
                             <div class="row" style="background-color: #fafafa; padding-top: 25px; border-radius: 15px;">
 
                                 <div class="buy-items col-md-4 flex flex-column align-center">
-                                    <img width="60px" src="{{ asset('/assets/images/card_icon.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/card_icon.svg') }}" alt="card">
                                     <p style="text-align: center; margin-top: 15px;"><b>Покупки при отсутствии банковской карты</b></p>
                                 </div>
 
                                 <div class="buy-items col-md-4 flex flex-column align-center">
-                                    <img width="60px" src="{{ asset('/assets/images/time_icon.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/time_icon.svg') }}" alt="time">
                                     <p style="text-align: center; margin-top: 15px;"><b>Экономия времени</b></p>
                                 </div>
 
                                 <div class="buy-items col-md-4 flex flex-column align-center">
-                                    <img width="60px" src="{{ asset('/assets/images/special_card_icon.svg') }}" alt="">
+                                    <img width="60px" src="{{ asset('/assets/images/special_card_icon.svg') }}" alt="special">
                                     <p style="text-align: center; margin-top: 15px;"><b>Покупки в специальных магазинах через американскую карту</b></p>
                                 </div>
 

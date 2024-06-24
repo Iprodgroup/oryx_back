@@ -349,3 +349,28 @@ label.new-flex_check_label::after {
     opacity: 1;
 }
 
+.parcels-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.parcels-filter input {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #E84438;
+    border-radius: 5px;
+    padding: 0 10px;
+    -moz-appearance: textfield;
+}
+
+.parcels-filter input::-webkit-outer-spin-button, .parcels-filter input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.parcels-filter button {
+    border: 0;
+    background: transparent;
+}

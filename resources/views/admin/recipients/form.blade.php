@@ -19,13 +19,13 @@
                 Сохранить
             </button>
             <a class="go-back" href="{{route('recipients.index')}}">
-                Назад 
+                Назад
                 <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.734375 7.99988L9.49987 15.6697V11.2264C12.258 10.9323 14.5383 11.7168 16.4106 13.5891L17.8332 15.0117V12.9999C17.8332 7.7786 14.9571 4.94273 9.49987 4.68574V0.330078L0.734375 7.99988ZM3.26537 7.9999L7.83322 4.00304V6.33323H8.66655C13.0004 6.33323 15.3753 7.87575 15.9988 11.097C13.8795 9.67865 11.375 9.20365 8.52955 9.6779L7.83322 9.79396V11.9968L3.26537 7.9999Z" fill="white"/></svg>
             </a>
         </div>
-    
+
         <div class="content content-inner">
-    		
+
     	        <div class="profiles">
     	            <div class="prof-head">{{ $title }}</div>
     	            <div class="prof-inputs flex flex-wrap ">
@@ -69,7 +69,7 @@
     	                    <p class="input-name">Адрес</p>
     	                    <input type="text" name="address" value="{{ old('address', $item->address) }}"/>
     	                </div>
-    	                <div class="new-flex w-two flex flex-wrap"> 
+    	                <div class="new-flex w-two flex flex-wrap">
     	                    <p class="input-name">Подтвержден</p>
     	                    <div class="new-flex_check">
         	                    <input type="hidden" name="confirm" value="0">
@@ -77,19 +77,27 @@
         	                    <label class="new-flex_check_label"></label>
     	                    </div>
     	                </div>
-    	                
-    	                
-    	                
+
+                        @if($item->files)
+                            @foreach(json_decode($item->files, true) as $key => $file)
+                                <div class="" style="width: 49%;">
+                                    <a target="_blank" class="input-name" style="display: block; " href="/panel/recipient/file/{{ $item->id }}/{{ $key }}">
+                                        <img src="/panel/recipient/file/{{ $item->id }}/{{ $key }}" alt="file">
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
+
     	                 @foreach ($item->getMedia('pass')->all() as $key=>$pass)
-    	                	<div class="" style="width: 49%;"> 
+    	                	<div class="" style="width: 49%;">
 		                        <a target="_blank" class="input-name" style="display: block; " href="/storage/app/public/{{ $pass->id }}/{{ $pass->file_name }}">
 		                            <img src="/storage/app/public/{{ $pass->id }}/{{ $pass->file_name }}" alt="">
-		                        </a> 
+		                        </a>
     		                </div>
-    	                @endforeach
-    	                
-    	                 
-    	                
+                        @endforeach
+
+
+
     	                @foreach ($item->getMedia('pass')->all() as $key=>$pass)
     	                	<div class="new-flex hide">
                                 @if (strpos($pass->getUrl(),$pass->file_name))
@@ -113,12 +121,12 @@
     	                Сохранить
     	            </button>
     	        </div>
-    		
+
     	</div>
-	
-	
+
+
 	</div>
-	
+
 </form>
 
 	<form method="POST" id="error_form" action="{{ route('recipients.error', $item->id?$item->id:0) }}" style="display: none">
@@ -134,7 +142,7 @@
             </div>
         </div>
     </form>
-	
+
 	<script>
 		$(function(){
 			$('#error').click(function(){

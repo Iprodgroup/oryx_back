@@ -26,7 +26,8 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
+        // \Fruitcake\Cors\HandleCors::class,
+		\App\Http\Middleware\Cors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
@@ -50,9 +51,11 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
+			'throttle:api',
+			\Illuminate\Routing\Middleware\SubstituteBindings::class,
+			\Illuminate\Session\Middleware\StartSession::class, // Добавить это middleware
+			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, // И это
+		],
     ];
 
     /**
@@ -73,5 +76,6 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'check.fio.user' => CheckFioUser::class,
+		'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

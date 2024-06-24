@@ -12,17 +12,12 @@
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            <ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
         </div>
     @endif
 
 
     <div class="container">
-
         <div class="count-flex flex flex-wrap between">
 
             <div class="title" style="width: 100%;">
@@ -37,13 +32,40 @@
                 <form method="POST" action="{{ route('profile.parcels.store') }}">
                     @csrf
 
+                    <div class="create-flex_wrap flex flex-wrap between">
 
-                    <div class="create-flex_wrap flex flex-wrap between" style="max-width: 650px">
+                        <p>Страна отправки</p>
 
-                        <div class="create-flex" style="max-width: 165px">
-                            <p class="input-item">Страна отправки</p>
-                            {{ Form::select('country_out', App\Models\Setting::where([['type',3],['active',1]])->pluck('name','id'),  old('country_out'),['class'=>'counrty-select','id'=>'country_out']) }}
+                        @php
+                            $addresses = \App\Models\Address::get();
+                            $addresses_id = $addresses->pluck('tab');
+                        @endphp
+
+                        <div class="tabtab">
+
+                            @php
+                                $addresses = \App\Models\Address::get();
+                                $tabs = \App\Models\Setting::whereIn('id', $addresses->pluck('tab'))->get();
+                                $active = $tabs->first();
+                            @endphp
+
+                            @foreach($tabs as $key => $tab)
+                                <button class="tablinks {{ !$loop->first ?: 'active' }}" onclick="openCity(event, '{{ $tab->name }}')">{{ $tab->name }}</button>
+                            @endforeach
+
                         </div>
+
+                        @foreach($tabs as $key => $tab)
+                            <div id="{{ $tab->name }}" class="tabcontent">
+                                <div class="faq">
+                                    <div class="create-flex">
+                                        <p class="input-item">Город отправки</p>
+                                        {{ Form::select('city_out', $addresses->where('tab', $tab->id)->pluck('title','id'),  old('country_out'),['class'=>'counrty-select mycity','id'=>'country_out_'.$tab->name]) }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
                         <div id="eu" style="display: none">
                             <div class="create-flex">
                                 <p class="input-item">Фио получателя</p>
@@ -68,7 +90,8 @@
                                        class="style-input num-tracking @error('in_phone') is-invalid @enderror"/>
                             </div>
                         </div>
-                        <div class="create-flex" style="max-width: 165px">
+
+                        <div class="create-flex" style="max-width: 45%">
                             <p class="input-item">Страна доставки</p>
                             {{ Form::select('country', $countries_out, old('country'),['class'=>'counrty-select']) }}
                         </div>
@@ -150,23 +173,15 @@
                                                 <fieldset>
                                                     <legend></legend>
                                                     <div>
-                                                        <input type="hidden" id="puF4" type="goods[price][]"
-                                                               name="prod_price" value="0"/>
-
-
+                                                        <input type="hidden" id="puF4" type="goods[price][]" name="prod_price" value="0"/>
                                                     </div>
-
-
                                                     <script>
 
                                                         var txt = document.getElementById('puF4'),
                                                             check = document.getElementById('check');
 
-
                                                         check.onchange = function () {
-
                                                             txt.value = (this.checked) ? 2 : 0;
-
                                                         };
 
                                                     </script>
@@ -205,23 +220,24 @@
                             <button type="button" class="add bt btn-orange" id="add">Добавить еще один товар</button>
                         </div>
                         <div class="poluchatel mb-30px">
-                            <p class="input-item">Получатель</p>
                             @if (count($recipients))
+                                <p class="input-item mr-3">Получатель</p>
                                 {{ Form::select('recipient_id', $recipients, false, ['class'=>'curr-select','required','oninvalid'=>"this.setCustomValidity('Выберите получателя из списка или добавьте нового получателя')"]) }}
                             @else
-                                <p>Чтобы забрать посылки в Казахстане, добавьте <a
-                                        href="{{ route('profile.settings') }}">получателя</a></p>
+                                <p>Чтобы забрать посылки в Казахстане, добавьте <a href="{{ route('profile.settings') }}">получателя</a></p>
                             @endif
                         </div>
 
 
                         <div class="under-buttons">
-                            <button type="submit" class="add-succ bt btn-orange">Добавить посылку</button>
-                            <a href="{{ route('profile.parcels') }}" class="bt btn-cancel">Отменить</a>
+                            @if(count($recipients) > 0)
+                                <button type="submit" class="add-succ bt btn-orange">Добавить посылку</button>
+                                <a href="{{ route('profile.parcels') }}" class="bt btn-cancel">Отменить</a>
+                            @endif
                         </div>
 
 
-                </form>
+                </div></form>
 
             </div>
 
@@ -238,20 +254,19 @@
 
 
         </div>
-
-
     </div>
 
 @endsection
+
 @section('script')
     <script>
         $(function () {
-            countryOut();
+            /*countryOut();
             $('#country_out').change(function () {
                 countryOut();
-            });
+            });*/
 
-            function countryOut() {
+            /*function countryOut() {
                 if (parseInt($('#country_out').val()) == 6) {
                     $('#eu').hide();
                     $('.c6').show();
@@ -261,7 +276,7 @@
                     $('.c6').hide();
                     $('#eu input').prop('required', true);
                 }
-            }
+            }*/
 
             $('#add').click(function () {
                 var $clone = $('#goods .good').eq(0).clone();
@@ -301,16 +316,110 @@
                     total += price;
                 });
 
-                /*var weight = Math.ceil(parseFloat($('#weight').val())*10)/10;
-                if(!weight)
-                    weight = 0;
-                if($('[name=currency]').val() != '$'){
-                    weight = Math.ceil(weight-(weight/100*22));
-                }
-                console.log(weight);
-                $('.itog span').html(weight*kg_price+$('[name=currency]').val());*/
                 $('.itog span').html(total + '$');
             }
         });
+
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks, select;
+
+            select = document.getElementsByClassName("mycity");
+            for (i = 0; i < select.length; i++) {
+                select[i].setAttribute("disabled", "");
+            }
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            document.getElementById('country_out_' + cityName).removeAttribute('disabled');
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById('{{ $active->name }}').style.display = "block";
+        document.getElementById('country_out_{{ $active->name }}').removeAttribute('disabled');
     </script>
+@endsection
+
+@section('styles')
+    <style>
+        .tabtab {
+            width: 100%;
+            border-bottom: 2px solid #000;
+            margin-bottom: 20px;
+            height: 52px;
+        }
+
+        .tabtab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        .tabtab button:hover {
+            background-color: #ddd;
+        }
+
+        .tabtab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            width: 100%;
+        }
+
+        .tabcontent .active{
+            display: block;
+        }
+
+        .tabcontent {
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 @endsection

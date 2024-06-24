@@ -1,7 +1,7 @@
 <div class="header-top flex flex-wrap between align-center">
     <div class="logo">
         <a href="/">
-            <img src=" {{ asset('assets/images/logo.png') }} ">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="ORYX">
         </a>
     </div>
 
@@ -17,8 +17,8 @@
                 <!--<span class="item-numbers">0</span>-->
                 <div class="dropdown-area">
                     <div class="account-date">
-                        <p class="name-surname" style="margin-bottom: 5px;">irina admin</p>
-                        <p class="account-email">erke-naz342@mail.ru</p>
+                        <p class="name-surname" style="margin-bottom: 5px;">{{ Auth::user()->name }} {{ Auth::user()->surname }}</p>
+                        <p class="account-email">{{ Str::limit(Auth::user()->email, 22, '..') }}</p>
                     </div>
                     <div class="drop-links">
                         <a href="/profile">Мой профиль</a>

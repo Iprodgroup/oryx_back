@@ -12,7 +12,7 @@
     <x-profileNav></x-profileNav>
 
     <div class="referal-flex">
-        <div class="referal-prog">
+<!--        <div class="referal-prog">
             <div class="reg-head">Реферальная программа</div>
             <p class="ref-sub">Приглашайте друзей и получайте <span>15%</span> от каждого платежа приглашенного друга.
             </p>
@@ -21,7 +21,7 @@
                 <p>Поделитесь ссылкой с друзьями:</p>
                 <div class="share-links">
 
-                    <!---whatsApp--->
+                    &lt;!&ndash;-whatsApp-&ndash;&gt;
                     <a href="#">
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.0507812" y="0.421631" width="25.5471" height="25.5471" rx="4" fill="#2AB200"/>
@@ -32,7 +32,7 @@
                         </svg>
                     </a>
 
-                    <!---Telegram--->
+                    &lt;!&ndash;-Telegram-&ndash;&gt;
                     <a href="#">
                         <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.609375" y="0.421631" width="25.5471" height="25.5471" rx="4" fill="#2DA4E1"/>
@@ -42,7 +42,7 @@
 
                     </a>
 
-                    <!---Instagram--->
+                    &lt;!&ndash;-Instagram-&ndash;&gt;
                     <a href="#">
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.167969" y="0.421631" width="25.5471" height="25.5471" rx="4"
@@ -64,7 +64,7 @@
                         </svg>
                     </a>
 
-                    <!---facebook--->
+                    &lt;!&ndash;-facebook-&ndash;&gt;
                     <a href="#">
                         <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.724609" y="0.421631" width="25.5471" height="25.5471" rx="4" fill="#405A9A"/>
@@ -73,7 +73,7 @@
                         </svg>
                     </a>
 
-                    <!---vk--->
+                    &lt;!&ndash;-vk-&ndash;&gt;
                     <a href="#">
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.283203" y="0.421631" width="25.5471" height="25.5471" rx="4" fill="#2A89F5"/>
@@ -82,7 +82,7 @@
                         </svg>
                     </a>
 
-                    <!---Google--->
+                    &lt;!&ndash;-Google-&ndash;&gt;
                     <a href="#">
                         <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.839844" y="0.421631" width="25.5471" height="25.5471" rx="4" fill="#C02126"/>
@@ -93,34 +93,53 @@
 
                 </div>
             </div>
-        </div>
+        </div>-->
 
-        <div class="ref-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="whitebox mb-30px" style="width: 100%;">
+                        <div class="acc-name title20">Реферальная программа</div>
+                        <p class="sub-text">Приглашайте друзей и получайте 4$ бонуса от каждого первого платежа приглашенного друга.</p>
+                        <br>
+                        <br>
+                        <input style="width: 0; height: 0; border: none;" type="text" id="copy_link" value="https://{{ env('APP_URL') }}/referal-register/{{ Auth::user()->id }}">
+                        <button class="btn btn-orange" value="copy" onclick="copyToClipboard()">Поделитесь ссылкой с друзьями</button>
+                        <script>
+                            function copyToClipboard() {
+                                document.getElementById("copy_link").select();
+                                document.execCommand('copy');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
             <div class="ref-table">
                 <table class="table referal-table">
                     <thead>
                     <tr>
-                        <td>Переходы</td>
-                        <td>Регистрации</td>
-                        <td>Текущий баланс</td>
-                        <td>Сумма выплат</td>
+                        <td>Имя</td>
+                        <td>статус</td>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @foreach($referals as $referal)
+                        <tr>
+                            <td>{{ $referal->friend->name }}</td>
+                            <td>{{ $referal->status }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 
             </div>
-            <p class="ref-cashback">
-                Кэшбэк можно потратить на доставку на сайте Oryx.kz, а также на оплату сервиса
-                «Купи вместо меня». Вывод денег с баланса не предусмотрен
-            </p>
+            <div class="ref-block">
+                <p class="ref-cashback">
+                    Кэшбэк можно потратить на доставку на сайте Oryx.kz, а также на оплату сервиса
+                    «<a href="/buy-me">Купи вместо меня</a>». Вывод денег с баланса не предусмотрен
+                </p>
+            </div>
         </div>
+
     </div>
 @endsection

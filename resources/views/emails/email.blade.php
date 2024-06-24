@@ -8,6 +8,7 @@
 
 </head>
 <body class="body">
+<p>Name: {!! $name !!}  </p>
 <p>Telefon or EMAIL: {!! $email !!}  </p>
 </body>
 </html>

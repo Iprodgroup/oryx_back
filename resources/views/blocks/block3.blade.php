@@ -9,87 +9,12 @@
         </div>
     </div>
 
-    <!---<div class="products flex flex-wrap between mb-70px">
-
-      <div class="product wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-
-        <div class="product-name">
-          Обувь
-        </div>
-        <div class="product-dost">
-          доставка от
-        </div>
-        <div class="product-price">
-          7.15$
-        </div>
-        <div class="product-img">
-          <img src="/images/site/prod1.png">
-        </div>
-
-      </div>
-
-
-      <div class="product wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.8s">
-
-        <div class="product-name">
-          Iphone
-        </div>
-        <div class="product-dost">
-          доставка от
-        </div>
-        <div class="product-price">
-          7.15$
-        </div>
-        <div class="product-img">
-          <img src="/images/site/prod2.png">
-        </div>
-
-      </div>
-
-      <div class="product wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.1s">
-
-        <div class="product-name">
-          Одежда
-        </div>
-        <div class="product-dost">
-          доставка от
-        </div>
-        <div class="product-price">
-          7.15$
-        </div>
-        <div class="product-img">
-          <img src="/images/site/prod3.png">
-        </div>
-
-      </div>
-
-      <div class="product  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.4s">
-
-        <div class="product-name">
-          Игрушки
-        </div>
-        <div class="product-dost">
-          доставка от
-        </div>
-        <div class="product-price">
-          7.15$
-        </div>
-        <div class="product-img">
-          <img src="/images/site/prod4.png">
-        </div>
-
-      </div>
-
-
-    </div>--->
-
-
     <div class="products col-md-12 flex flex-wrap  mb-70px">
 
         @foreach($products as $product)
             <div class="product col-md-6 col-lg-4 col-xl-3 wow fadeInLeft flex flex-column justify-content-between" data-wow-duration="1s" data-wow-delay="0.5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeInLeft;">
                 <div class="product-name">{{ $product->title }}</div>
-                <div class="product-img"><img style="margin-top: 20px; margin-bottom: 50px; max-height: 200px;" src="assets/images/{{ $product->img }} "></div>
+                <div class="product-img"><img style="margin-top: 20px; margin-bottom: 50px; max-height: 200px;" src="assets/images/{{ $product->img }} " alt="{{ $product->title }}"></div>
             </div>
         @endforeach
 
@@ -155,7 +80,7 @@
                      style="transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; position: relative; pointer-events: none;">
                     <div data-depth="0.10"
                          style="transform: translate3d(-0.4px, -1.7px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
-                        <img src=" {{ asset('assets/images/calc.png') }} ">
+                        <img src=" {{ asset('assets/images/calc.png') }} " alt="calc">
                     </div>
                 </div>
             </div>

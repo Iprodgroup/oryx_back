@@ -30,10 +30,10 @@ class Controller extends BaseController
             }
             $mail = Setting::where('code',$type)->where('type',0)->where('active',1)->first();
             if ($mail) {
-                Mail::send('emails.notification', ['text' => $this->rep($mail->value,$title)], function ($m) use ($user,$mail) {
-                    $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
-                    $m->to($user->email, $user->name)->subject($mail->name);
-                });
+                    Mail::send('emails.notification', ['text' => $this->rep($mail->value,$title)], function ($m) use ($user,$mail) {
+                        $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                        $m->to($user->email, $user->name)->subject($mail->name);
+                    });
             }
         }
 

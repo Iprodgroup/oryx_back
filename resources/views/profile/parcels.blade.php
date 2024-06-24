@@ -38,14 +38,14 @@
 
         <div class="parcels-content">
 
-
-
-            <div class="transact-nav mb-50px">
+            <div class="transact-nav row mb-50px">
                 @foreach (__('ui.status') as $status_id=>$status)
-                    <a class="transact-link {{ $status_id==request()->input('status')?'active':'' }}" href="{{ route('profile.parcels') }}?status={{ $status_id }}">
-                        <div>{{ $status }}</div>
-                        <span>({{ Auth::user()->parcelStatusCount($status_id) }})</span>
-                    </a>
+                    <div class="col-lg-4 col-sm-6">
+                        <a style="margin-bottom: 10px;" class="transact-link {{ $status_id==request()->input('status')?'active':'' }}" href="{{ route('profile.parcels') }}?status={{ $status_id }}">
+                            <div>{{ $status }}</div>
+                            <span>({{ Auth::user()->parcelStatusCount($status_id) }})</span>
+                        </a>
+                    </div>
                 @endforeach
             </div>
 
@@ -246,7 +246,7 @@
             @else
                 <div class="content-block">
                     <div class="empty">
-                        <img src="/public/images/box-default.png" class="empty-img">
+                        <img src="/storage/images/box-default.png" class="empty-img">
                         <div class="empty-head">У вас еще нет посылок</div>
                         <a href="{{ route('profile.parcels.create') }}" class="bt btn-orange empty-btn add-parcel">Добавить посылку</a>
                     </div>

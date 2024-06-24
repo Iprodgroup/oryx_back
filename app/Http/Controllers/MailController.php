@@ -15,7 +15,7 @@ class MailController extends Controller
     {
         // Ship the order...
 
-        Mail::to('bexruzfatullayev999@gmail.com')->send(new ContactShipped());
+        Mail::to('info@oryx.kz')->send(new ContactShipped());
 
         return redirect('/');
     }
@@ -26,7 +26,7 @@ class MailController extends Controller
         $message = Arr::get($request, 'message', 'no message');
         $phone = Arr::get($request, 'phone', 'no phone');
         $country = 'KZ';
-        Mail::to('inquiry@instrubiz.com')->send(new ContactShipped($validated, $message, $phone, $country));
+        Mail::to('info@oryx.kz')->send(new ContactShipped($validated, $message, $phone, $country));
 
         return redirect()->back()->with('status', 'success');
     }

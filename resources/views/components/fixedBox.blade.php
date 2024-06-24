@@ -3,7 +3,7 @@
         <div class="callBack__icon">
             <img src="{{ asset ('/storage/icons/call.svg') }}" alt="call">
         </div>
-        <a href="https://instagram.com/orix.usa?utm_medium=copy_link" class="callBack__instagram">
+        <a href="https://www.instagram.com/oryx.usa.kz/" class="callBack__instagram">
             <img src="{{ asset ('/storage/icons/instagram.svg') }}" alt="instagram">
         </a>
         <a href="tel:+77003232222" class="callBack__phone">

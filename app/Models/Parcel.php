@@ -21,6 +21,7 @@ class Parcel extends Model
         'country',
         'country_out',
         'city',
+        'city_out',
         'prod_price',
         'pid',
         'weight',

@@ -11,13 +11,13 @@
 
                 <div class="review-img_wrap">
 
-                    <img src=" {{ asset('assets/images/cube1.png') }}" class="cube cube1">
-                    <img src=" {{ asset('assets/images/cube2.png') }}" class="cube cube2">
-                    <img src=" {{ asset('assets/images/cube3.png') }}" class="cube cube3">
+                    <img src=" {{ asset('assets/images/cube1.png') }}" class="cube cube1" alt="cube">
+                    <img src=" {{ asset('assets/images/cube2.png') }}" class="cube cube2" alt="cube">
+                    <img src=" {{ asset('assets/images/cube3.png') }}" class="cube cube3" alt="cube">
 
-                    <img src=" {{ asset('assets/images/man.png') }}" class="man">
+                    <img src=" {{ asset('assets/images/man.png') }}" class="man" alt="man">
 
-                    <img src=" {{ asset('assets/images/shadow.png') }}" class="shadow">
+                    <img src=" {{ asset('assets/images/shadow.png') }}" class="shadow" alt="shadow">
 
                 </div>
             </div>
@@ -26,7 +26,7 @@
 
                 @foreach ($reviews as $review)
                     <div class="review-item" style="width: 100%; margin-right: 20px">
-                        <img src=" {{ asset('assets/images/quote.png') }} " class="quote">
+                        <img src=" {{ asset('assets/images/quote.png') }} " class="quote" alt="quote">
                         <div class="review-text">
                             {{ $review->message }}
                         </div>

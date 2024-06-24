@@ -3,7 +3,7 @@
 
         <div class="about-img  wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s"
              style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.1s; animation-name: fadeInLeft;">
-            <img src=" {{ asset('assets/images/about3.jpg') }} ">
+            <img src=" {{ asset('assets/images/about3.jpg') }} " alt="about">
         </div>
 
         <div class="about-item wow fadeInRight"

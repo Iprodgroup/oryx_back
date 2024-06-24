@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" dir="ltr" data-lt-installed="true" lang="ru-ru">
 <head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94520712, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94520712" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
     <!-- base href="https://oryx.kz/" -->
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="robots" content="index, follow">
     <meta name="description" content="Доставка товаров именитых брендов с США в Казахстан по низким ценам. Доставка обуви, одежды, электроники с Amazon, Ebay, Nike и других брендов в Казахстан.">
     <meta name="generator" content="Joomla! - Open Source Content Management">
-    <title>Быстрая доставка посылок из США в Казахстан</title>
+    <title></title>
     <link href="/?format=feed&type=rss" rel="alternate" type="application/rss+xml" title="RSS 2.0">
     <link href="/?format=feed&type=atom" rel="alternate" type="application/atom+xml" title="Atom 1.0">
 

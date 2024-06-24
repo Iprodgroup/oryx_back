@@ -13,6 +13,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Response;
 use App\Models\User;
 
+use Illuminate\Support\Facades\Log;
+
 class VerificationController extends Controller
 {
     /*
@@ -49,7 +51,9 @@ class VerificationController extends Controller
 
     public function verify(Request $request)
     {
+
         $user = User::find($request->route('id'));
+
 
         if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
             throw new AuthorizationException;
@@ -60,7 +64,7 @@ class VerificationController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('profile.index');
+		return response()->json(['message' => 'Email successfully verified']);
     }
 
     public function resend(Request $request)

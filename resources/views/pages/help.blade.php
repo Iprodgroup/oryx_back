@@ -1,10 +1,23 @@
 @extends('layouts.main')
 
+@section('meta')
+    <title>{{ $data['title'] }}</title>
+    <meta name="description" content="{{ $data['description'] }}">
+@endsection()
+
 @section('content')
 
     <section id="main" style="padding-top: 170px;">
 
         <div id="content" class="container">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Условия сервиса</li>
+                </ol>
+            </nav>
+
             <div class="jr_component">
                 <div class="jr_full">
 
@@ -21,26 +34,15 @@
 
                                 <div class="about-img about-img_anim">
                                     <div class="list list2"></div>
-                                    <img src="/images/site/box3.png" class="box box3">
-                                    <img src="/images/site/box4.png" class="box box4">
-                                    <img src="/images/site/aero.png" class="aero">
+                                    <img src="/images/site/box3.png" class="box box3" alt="box">
+                                    <img src="/images/site/box4.png" class="box box4" alt="box">
+                                    <img src="/images/site/aero.png" class="aero" alt="box">
                                 </div>
 
                                 <div class="about-item" style="max-width:510px">
 
-                                    <h1 class="title about-title">
-                                        Условия сервиса и стоимость
-                                    </h1>
-                                    <div class="text about-text">
-                                        <p>Компания ORYX – является мэйлфорвард сервисом, который предоставляет каждому
-                                            клиенту бесплатный адрес в США в безналоговом штате для приема, хранения и
-                                            дальнейшей отправки Ваших покупок.</p>
-                                        <p>Для нас нет невыполнимых задач в сфере шопинга и доставки из США! Сделать
-                                            фото, проверить размеры, вернуть товар в магазин или поменять его? Легко!
-                                            Стоимость таких спецзапросов определяется отдельно и зависит от их
-                                            сложности. По всем вопросам обращайтесь к менеджерам, которые с радостью Вас
-                                            проконсультируют.</p>
-                                    </div>
+                                    <h1 class="title about-title">{{ $data['h1'] }}</h1>
+                                    <div class="text about-text">{!! $data['text'] !!}</div>
                                 </div>
 
                             </div>
